@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_logo">Logo</string>
+    <string name="greeting_page_title">Greetings</string>
+    <string name="finish_btn_text">Finish</string>
+    <string name="greetings_page_description">Are you a Boruto fan? Because if you are then we have a great news for you!</string>
+    <string name="explore_page_title">Explore</string>
+    <string name="explore_page_description">Check out your hero\'s power and  see how much are they strong comparing to others.</string>
+    <string name="power_page_title">Power</string>
+    <string name="power_page_description">Are you a Boruto fan? Because if you are then we have a great news for you!</string>
+    <string name="page_image">Page Image</string>
+</resources>
