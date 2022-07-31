@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="io.blacketron.borutoapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".BorutoApplication"
         android:allowBackup="true"

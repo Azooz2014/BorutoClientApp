@@ -43,3 +43,11 @@ val inactiveIndicatorColor
 val finishButtonBackgroundColor
     @Composable
     get() = if (isSystemInDarkTheme()) Purple500 else Purple700
+
+val TopAppBarBackgroundColor
+    @Composable
+    get() = if (isSystemInDarkTheme()) Color.Black else Purple500
+
+val TopAppBarTextColor
+    @Composable
+    get() = if (isSystemInDarkTheme()) LightGray else Color.White

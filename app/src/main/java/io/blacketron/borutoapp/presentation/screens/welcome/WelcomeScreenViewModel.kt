@@ -1,13 +1,10 @@
 package io.blacketron.borutoapp.presentation.screens.welcome
 
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.blacketron.borutoapp.domain.use_cases.UseCase
+import io.blacketron.borutoapp.domain.use_cases.UseCases
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WelcomeScreenViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
+class WelcomeScreenViewModel @Inject constructor(private val useCases: UseCases): ViewModel(){
 
     private val TAG = "WelcomeScreenViewModel"
 
@@ -26,7 +23,7 @@ class WelcomeScreenViewModel @Inject constructor(private val useCase: UseCase): 
 
     fun welcomePageCompleted(isCompleted: Boolean){
         viewModelScope.launch(Dispatchers.IO) {
-            useCase.welcomePageCompletedUseCase(isCompleted = isCompleted)
+            useCases.welcomePageCompletedUseCase(isCompleted = isCompleted)
 
             _isFinished.update {
                 true

@@ -1,28 +1,31 @@
 package io.blacketron.borutoapp.presentation.screens.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Text
+import android.widget.Toast
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
+import io.blacketron.borutoapp.presentation.screens.home.components.TopBar
 
 @Composable
-fun HomeScreen(/*navHostController: NavHostController*/) {
+fun HomeScreen(
+    /*navHostController: NavHostController*/
+    homeViewModel: HomeViewModel = hiltViewModel()
+) {
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+    val context = LocalContext.current
+    val allHeroes = homeViewModel.getAllHeroes.collectAsLazyPagingItems()
+
+    Scaffold(
+        topBar = {
+            TopBar {
+                Toast.makeText(context, "Search Clicked!", Toast.LENGTH_SHORT).show()
+            }
+        }
     ) {
-        Text(
-            text = "Home Screen",
-            textAlign = TextAlign.Center
-        )
+
     }
 }
 

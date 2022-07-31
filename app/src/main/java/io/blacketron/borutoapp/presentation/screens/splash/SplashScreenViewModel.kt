@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.blacketron.borutoapp.domain.use_cases.UseCase
+import io.blacketron.borutoapp.domain.use_cases.UseCases
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashScreenViewModel @Inject constructor(private val useCase: UseCase) : ViewModel() {
+class SplashScreenViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
 
     private val TAG = "SplashScreenViewModel"
 
@@ -23,7 +23,7 @@ class SplashScreenViewModel @Inject constructor(private val useCase: UseCase) : 
     init {
         viewModelScope.launch(Dispatchers.IO) {
             _isWelcomePageCompleted.value =
-                useCase.isWelcomePageCompletedUseCase().stateIn(scope = viewModelScope).value
+                useCases.isWelcomePageCompletedUseCase().stateIn(scope = viewModelScope).value
             Log.d(TAG, "SplashScreenViewModel Coroutine triggered!")
             Log.d(TAG, "Welcome page state retrieved from datastore is: ${isWelcomePageCompleted.value}")
         }

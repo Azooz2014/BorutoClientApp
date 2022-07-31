@@ -9,4 +9,6 @@
     <string name="power_page_title">Power</string>
     <string name="power_page_description">Are you a Boruto fan? Because if you are then we have a great news for you!</string>
     <string name="page_image">Page Image</string>
+    <string name="top_app_bar_text">Explore</string>
+    <string name="accessiblity_search_icon">Search Icon</string>
 </resources>
