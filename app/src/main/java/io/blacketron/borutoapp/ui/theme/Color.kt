@@ -13,6 +13,11 @@ val Teal200 = Color(0xFF03DAC5)
 //val LightGray = Color(0xFFD8D8D8)
 val LightGray = Color(0xFFA4A4A4)
 val DarkGray = Color(0xFF2A2A2A)
+val GoldenYellow = Color(0xFFFFC94D)
+
+val ShimmerLightGray = Color(0xFFF1F1F1)
+val ShimmerMediumGray = Color(0xFFE3E3E3)
+val ShimmerDarkGray = Color(0xFF1D1D1D)
 
 val splashScreenBackgroundColor
     @Composable

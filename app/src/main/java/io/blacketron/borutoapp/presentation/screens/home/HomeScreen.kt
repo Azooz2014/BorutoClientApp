@@ -6,12 +6,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
+import coil.annotation.ExperimentalCoilApi
+import io.blacketron.borutoapp.presentation.common.ListContent
 import io.blacketron.borutoapp.presentation.screens.home.components.TopBar
 
+@ExperimentalCoilApi
 @Composable
 fun HomeScreen(
-    /*navHostController: NavHostController*/
+    navHostController: NavHostController,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
 
@@ -23,18 +28,20 @@ fun HomeScreen(
             TopBar {
                 Toast.makeText(context, "Search Clicked!", Toast.LENGTH_SHORT).show()
             }
+        },
+        content = {
+            ListContent(heroes = allHeroes, navHostController = navHostController)
         }
-    ) {
-
-    }
+    )
 }
 
 //////////////////////////////////////////////
 // Previews
 //////////////////////////////////////////////
 
+@ExperimentalCoilApi
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(rememberNavController())
 }

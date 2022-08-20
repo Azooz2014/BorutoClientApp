@@ -10,5 +10,7 @@
     <string name="power_page_description">Are you a Boruto fan? Because if you are then we have a great news for you!</string>
     <string name="page_image">Page Image</string>
     <string name="top_app_bar_text">Explore</string>
-    <string name="accessiblity_search_icon">Search Icon</string>
+    <string name="accessibility_search_icon">Search Icon</string>
+    <string name="star_path">M14,21.288,21.416,26l-1.968-8.88L26,11.145l-8.628-.771L14,2l-3.372,8.375L2,11.145,8.552,17.12,6.584,26Z</string>
+    <string name="accessibility_hero_image">Hero Image</string>
 </resources>

@@ -28,7 +28,7 @@ fun TopBar(onSearchClicked: () -> Unit) {
         actions = {
             IconButton(onClick = onSearchClicked) {
                 Icon(imageVector = Icons.Default.Search,
-                    contentDescription = stringResource(id = R.string.accessiblity_search_icon))
+                    contentDescription = stringResource(id = R.string.accessibility_search_icon))
             }
         }
     )
