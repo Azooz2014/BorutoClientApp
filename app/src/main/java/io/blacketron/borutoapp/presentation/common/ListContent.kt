@@ -46,18 +46,17 @@ fun ListContent(
 ) {
     val result = handlePagingResult(heroes = heroes)
 
-    if (result){
+    if (result) {
         LazyColumn(
             contentPadding = PaddingValues(all = SMALL_PADDING),
             verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
-        ){
+        ) {
             items(
                 items = heroes,
-                key = {
-                        hero -> hero.id
+                key = { hero ->
+                    hero.id
                 }
-            ){
-                    heroes ->
+            ) { heroes ->
                 heroes?.let { hero ->
                     HeroItem(hero = hero, navHostController = navHostController)
                 }
@@ -75,7 +74,7 @@ fun HeroItem(
 
     val painter = rememberImagePainter(
         data = "$BASE_URL${hero.imageUrl}"
-    ){
+    ) {
         placeholder(R.drawable.ic_placeholder)
         error(R.drawable.ic_placeholder)
     }
@@ -120,7 +119,7 @@ fun HeroItem(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-               Text(
+                Text(
                     text = hero.about,
                     color = Color.White.copy(0.5f),
                     fontSize = MaterialTheme.typography.subtitle1.fontSize,
@@ -151,7 +150,7 @@ fun HeroItem(
 fun handlePagingResult(heroes: LazyPagingItems<Hero>): Boolean {
 
     heroes.apply {
-        val error = when{
+        val error = when {
             loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
             loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
             loadState.append is LoadState.Error -> loadState.append as LoadState.Error
@@ -163,7 +162,15 @@ fun handlePagingResult(heroes: LazyPagingItems<Hero>): Boolean {
                 ShimmerEffect(shimmerItemCount = heroes.itemCount)
                 false
             }
+
+            heroes.itemCount < 1 -> {
+                EmptyScreen()
+                false
+            }
+
             error != null -> {
+
+                EmptyScreen(error = error, heroes = heroes)
                 Log.d("ListContent", "handlePagingResult: $error")
                 false
             }

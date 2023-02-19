@@ -10,6 +10,7 @@ import androidx.navigation.compose.navArgument
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import io.blacketron.borutoapp.presentation.screens.home.HomeScreen
+import io.blacketron.borutoapp.presentation.screens.search.SearchScreen
 import io.blacketron.borutoapp.presentation.screens.splash.SplashScreen
 import io.blacketron.borutoapp.presentation.screens.welcome.WelcomeScreen
 import io.blacketron.borutoapp.util.DETAILS_SCREEN_ARGUMENT_KEY
@@ -38,6 +39,7 @@ fun SetupNavGraph(navHostController: NavHostController) {
         }
         composable(route = Screen.Search.route) {
             //Composable screens go here.
+            SearchScreen(navController = navHostController)
         }
         composable(
             route = Screen.Details.route,

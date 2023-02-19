@@ -9,7 +9,7 @@ import javax.inject.Inject
 class MainRepositoryImpl @Inject constructor(
     private val dataStoreOperations: DataStoreOperations,
     private val remoteDataSource: RemoteDataSource
-    ): MainRepository {
+) : MainRepository {
     override suspend fun welcomePageCompleted(isCompleted: Boolean) {
         dataStoreOperations.welcomePageCompleted(isCompleted = isCompleted)
     }
@@ -18,7 +18,11 @@ class MainRepositoryImpl @Inject constructor(
         return dataStoreOperations.isWelcomePageCompleted()
     }
 
-    override fun getAllHeroes(): Flow<PagingData<Hero>>{
+    override fun getAllHeroes(): Flow<PagingData<Hero>> {
         return remoteDataSource.getAllHeroes()
+    }
+
+    override fun searchHeroes(query: String): Flow<PagingData<Hero>> {
+        return remoteDataSource.searchHeroes(query)
     }
 }

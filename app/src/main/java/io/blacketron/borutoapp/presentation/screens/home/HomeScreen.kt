@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
+import io.blacketron.borutoapp.navigation.Screen
 import io.blacketron.borutoapp.presentation.common.ListContent
 import io.blacketron.borutoapp.presentation.screens.home.components.TopBar
 
@@ -27,6 +28,7 @@ fun HomeScreen(
         topBar = {
             TopBar {
                 Toast.makeText(context, "Search Clicked!", Toast.LENGTH_SHORT).show()
+                navHostController.navigate(Screen.Search.route)
             }
         },
         content = {

@@ -76,7 +76,7 @@ class HeroRemoteMediator @Inject constructor(
 
             if(response.heroes.isNotEmpty()){
                 borutoDatabase.withTransaction {
-                    if (loadType === LoadType.REFRESH){
+                    if (loadType == LoadType.REFRESH){
                         heroDao.deleteAllHeroes()
                         heroRemoteKeysDao.deleteAllRemoteKeys()
                     }

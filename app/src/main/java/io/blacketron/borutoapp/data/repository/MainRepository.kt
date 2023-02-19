@@ -9,4 +9,5 @@ interface MainRepository {
     suspend fun welcomePageCompleted(isCompleted: Boolean)
     fun isWelcomePageCompleted(): Flow<Boolean>
     fun getAllHeroes(): Flow<PagingData<Hero>>
+    fun searchHeroes(query: String): Flow<PagingData<Hero>>
 }

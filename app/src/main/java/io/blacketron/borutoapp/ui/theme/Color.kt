@@ -56,3 +56,15 @@ val TopAppBarBackgroundColor
 val TopAppBarTextColor
     @Composable
     get() = if (isSystemInDarkTheme()) LightGray else Color.White
+
+val TopAppBarContentTextColor
+    @Composable
+    get() = if (isSystemInDarkTheme()) LightGray else Color.White
+
+val ErrorIconColor
+    @Composable
+    get() = if (isSystemInDarkTheme()) LightGray else DarkGray
+
+val ErrorTitleColor
+    @Composable
+    get() = if (isSystemInDarkTheme()) LightGray else DarkGray
