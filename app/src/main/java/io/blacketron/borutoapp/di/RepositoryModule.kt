@@ -11,10 +11,9 @@ import io.blacketron.borutoapp.data.local.database.BorutoDB
 import io.blacketron.borutoapp.data.local.preferences.DataStoreOperations
 import io.blacketron.borutoapp.data.local.preferences.DataStoreOperationsImpl
 import io.blacketron.borutoapp.data.remote.BorutoApi
-import io.blacketron.borutoapp.data.repository.MainRepositoryImpl
-import io.blacketron.borutoapp.data.repository.RemoteDataSource
-import io.blacketron.borutoapp.data.repository.RemoteDataSourceImpl
+import io.blacketron.borutoapp.data.repository.*
 import io.blacketron.borutoapp.domain.use_cases.UseCases
+import io.blacketron.borutoapp.domain.use_cases.get_selected_hero.GetSelectedHeroUseCase
 import io.blacketron.borutoapp.domain.use_cases.read_welcome_page_state.IsWelcomePageCompletedUseCase
 import io.blacketron.borutoapp.domain.use_cases.remote_data_source.GetAllHeroesUseCase
 import io.blacketron.borutoapp.domain.use_cases.save_welcome_page_state.WelcomePageCompletedUseCase
@@ -45,10 +44,11 @@ object RepositoryModule {
     @Singleton
     fun provideUseCase(repository: MainRepositoryImpl): UseCases {
         return UseCases(
-            welcomePageCompletedUseCase = WelcomePageCompletedUseCase(repository = repository),
-            isWelcomePageCompletedUseCase = IsWelcomePageCompletedUseCase(repository = repository),
-            getAllHeroesUseCase = GetAllHeroesUseCase(repository = repository),
-            searchHeroesUseCase = SearchHeroesUseCase(repository = repository)
+            welcomePageCompletedUseCase = WelcomePageCompletedUseCase(repository),
+            isWelcomePageCompletedUseCase = IsWelcomePageCompletedUseCase(repository),
+            getAllHeroesUseCase = GetAllHeroesUseCase(repository),
+            searchHeroesUseCase = SearchHeroesUseCase(repository),
+            getSelectedHeroUseCase = GetSelectedHeroUseCase(repository)
         )
     }
 
@@ -62,5 +62,13 @@ object RepositoryModule {
             borutoApi = borutoApi,
             borutoDB = borutoDB
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(
+        database: BorutoDB
+    ): LocalDataSource {
+        return LocalDataSourceImp(database)
     }
 }

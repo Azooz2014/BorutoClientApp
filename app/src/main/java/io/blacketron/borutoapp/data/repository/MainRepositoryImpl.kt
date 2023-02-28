@@ -8,7 +8,8 @@ import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
     private val dataStoreOperations: DataStoreOperations,
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
 ) : MainRepository {
     override suspend fun welcomePageCompleted(isCompleted: Boolean) {
         dataStoreOperations.welcomePageCompleted(isCompleted = isCompleted)
@@ -24,5 +25,9 @@ class MainRepositoryImpl @Inject constructor(
 
     override fun searchHeroes(query: String): Flow<PagingData<Hero>> {
         return remoteDataSource.searchHeroes(query)
+    }
+
+    override suspend fun getSelectedHero(heroId: Int): Hero {
+        return localDataSource.getSelectedHero(heroId)
     }
 }

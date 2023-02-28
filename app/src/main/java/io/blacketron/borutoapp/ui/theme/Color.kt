@@ -68,3 +68,7 @@ val ErrorIconColor
 val ErrorTitleColor
     @Composable
     get() = if (isSystemInDarkTheme()) LightGray else DarkGray
+
+val ContentColor
+    @Composable
+    get() = if (isSystemInDarkTheme()) LightGray else DarkGray

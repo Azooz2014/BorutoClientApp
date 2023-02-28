@@ -17,4 +17,13 @@
     <string name="search_icon_desc">Search Icon</string>
     <string name="closing_icon_desc">Closing Icon</string>
     <string name="find_favorite_hero">Find Your Favorite Hero!</string>
+    <string name="info_icon">Info Icon</string>
+    <string name="logo">Logo</string>
+    <string name="info_box_desc_power">Power</string>
+    <string name="info_box_desc_birth_month">Birth Month</string>
+    <string name="info_box_desc_birth_day">Birth Day</string>
+    <string name="about">About</string>
+    <string name="family">Family</string>
+    <string name="abilities">Abilities</string>
+    <string name="nature_types">Nature Types</string>
 </resources>
