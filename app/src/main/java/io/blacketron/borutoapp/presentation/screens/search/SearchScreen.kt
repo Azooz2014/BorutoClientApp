@@ -11,7 +11,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.blacketron.borutoapp.presentation.common.ListContent
+import io.blacketron.borutoapp.ui.theme.statusBarColor
 
 @ExperimentalCoilApi
 @Composable
@@ -23,6 +25,12 @@ fun SearchScreen(
     val query = searchViewModel.searchQuery
 
     val searchedHeroes = searchViewModel.searchedHeroes.collectAsLazyPagingItems()
+
+    //Set status bar color to default.
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = statusBarColor
+    )
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),

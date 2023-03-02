@@ -10,9 +10,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.blacketron.borutoapp.navigation.Screen
 import io.blacketron.borutoapp.presentation.common.ListContent
 import io.blacketron.borutoapp.presentation.screens.home.components.TopBar
+import io.blacketron.borutoapp.ui.theme.statusBarColor
 
 @ExperimentalCoilApi
 @Composable
@@ -23,6 +25,12 @@ fun HomeScreen(
 
     val context = LocalContext.current
     val allHeroes = homeViewModel.getAllHeroes.collectAsLazyPagingItems()
+
+    //Set status bar color to default.
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = statusBarColor
+    )
 
     Scaffold(
         topBar = {

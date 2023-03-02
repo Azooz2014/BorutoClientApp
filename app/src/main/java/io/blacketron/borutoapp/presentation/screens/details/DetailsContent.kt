@@ -1,5 +1,6 @@
 package io.blacketron.borutoapp.presentation.screens.details
 
+import android.graphics.Color.parseColor
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,8 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.blacketron.borutoapp.R
 import io.blacketron.borutoapp.domain.model.Hero
 import io.blacketron.borutoapp.presentation.components.InfoBox
@@ -29,12 +30,38 @@ import io.blacketron.borutoapp.presentation.components.OrderedList
 import io.blacketron.borutoapp.ui.theme.*
 import io.blacketron.borutoapp.util.BASE_URL
 
-@OptIn(ExperimentalMaterialApi::class)
+@ExperimentalMaterialApi
+@ExperimentalCoilApi
 @Composable
 fun DetailsContent(
     navHostController: NavHostController,
-    selectedHero: Hero?
+    selectedHero: Hero?,
+    colorPalette: Map<String, String>
 ) {
+
+    var vibrant by remember {
+        mutableStateOf("#000000")
+    }
+    var darkVibrant by remember {
+        mutableStateOf("#000000")
+    }
+    var onDarkVibrant by remember {
+        mutableStateOf("#ffffff")
+    }
+
+    //Generate new color palette swatch from hero image when selectedHero is updated.
+    LaunchedEffect(key1 = selectedHero) {
+        vibrant = colorPalette["vibrant"]!!
+        darkVibrant = colorPalette["darkVibrant"]!!
+        onDarkVibrant = colorPalette["onDarkVibrant"]!!
+    }
+
+    //Update action bar color to reflect the new color generated from the palette.
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = Color(parseColor(darkVibrant))
+    )
+
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
     )
@@ -52,7 +79,16 @@ fun DetailsContent(
             topStart = animatedRadius,
             topEnd = animatedRadius
         ),
-        sheetContent = { selectedHero?.let { BottomSheetContent(selectedHero = it) } },
+        sheetContent = {
+            selectedHero?.let {
+                BottomSheetContent(
+                    selectedHero = it,
+                    contentColor = Color(parseColor(onDarkVibrant)),
+                    sheetBackgroundColor = Color(parseColor(darkVibrant)),
+                    iconColor = Color(parseColor(vibrant))
+                )
+            }
+        },
         content = {
             selectedHero?.let { hero ->
                 BackgroundContent(
@@ -72,7 +108,11 @@ fun BottomSheetContent(
     sheetBackgroundColor: Color = MaterialTheme.colors.surface,
     iconColor: Color = MaterialTheme.colors.primary
 ) {
-    Column(Modifier.padding(LARGE_PADDING)) {
+    Column(
+        Modifier
+            .background(sheetBackgroundColor)
+            .padding(LARGE_PADDING)
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
